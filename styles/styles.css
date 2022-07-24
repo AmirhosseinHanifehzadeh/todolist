@@ -1,0 +1,437 @@
+/*
+html5doctor.com Reset Stylesheet
+v1.6.1
+Last Updated: 2010-09-17
+Author: Richard Clark - http://richclarkdesign.com
+Twitter: @rich_clark
+*/
+
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    font-family: 'Roboto', sans-serif;
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+body {
+    line-height:1;
+    overflow: hidden;
+}
+
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section {
+    display:block;
+}
+
+nav ul {
+    list-style:none;
+}
+
+blockquote, q {
+    quotes:none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content:'';
+    content:none;
+}
+
+a {
+    margin:0;
+    padding:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+/* change colours to suit your needs */
+ins {
+    background-color:#ff9;
+    color:#000;
+    text-decoration:none;
+}
+
+/* change colours to suit your needs */
+mark {
+    background-color:#ff9;
+    color:#000;
+    font-style:italic;
+    font-weight:bold;
+}
+
+del {
+    text-decoration: line-through;
+}
+
+abbr[title], dfn[title] {
+    border-bottom:1px dotted;
+    cursor:help;
+}
+
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+}
+
+/* change border colour to suit your needs */
+hr {
+    display:block;
+    height:1px;
+    border:0;  
+    border-top:1px solid #cccccc;
+    margin:1em 0;
+    padding:0;
+}
+
+input, select {
+    vertical-align:middle;
+}
+
+body{
+    width: 100%;
+    overflow-y: visible;
+    overflow-x: hidden;
+    height: 100vh;
+}
+
+main{
+    height: 100%;
+    width: 100%;
+}
+
+header {
+    width: 100%;
+    background-color: #1B262C;
+    color: #BBE1FA;
+    height: 70px;
+    display: flex;
+    align-items: center;
+}
+
+header h1{
+    margin: 0 auto;
+}
+
+header h1{
+    font-size: 30px;
+    font-family: 'Edu VIC WA NT Beginner', cursive;
+}
+
+.search-container{
+    width: 100%;
+    height: 60px;
+    position: relative;
+    margin-top: 25px;
+}
+
+.search-container .search-box-container{
+    width: 90%;
+    height: 100%;
+    display: block !important;
+    position: relative;
+    display: flex;
+    margin: 0 auto;
+    text-align: center;
+}
+
+
+.search-container .search-box-container .search-box{
+    background-color: none;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #0F4C75;
+    font-size: 18px;
+    width: 40%;
+    display:inline-block;
+    left: 50%;
+}
+
+.search-container .search-box-container .submit-btn{
+    background-color: transparent;
+    color: #000;
+    padding: 3px 15px;
+    outline: none;
+    border: none;
+    width: 90px;
+    box-sizing: border-box;
+    font-size: 1.1rem;
+    border: 1.5px solid #0F4C75;
+    border-radius: 21px;
+    transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.search-container .search-box-container .submit-btn:hover{
+    background-color: #1B262C;
+    cursor: pointer;
+    color: #BBE1FA;
+}
+
+.tasks, .did-tasks{
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.task{
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    background-color: #E7F6F2;
+    border-radius: 8px;
+    padding: 0 15px;
+    align-items: center;
+    box-sizing: border-box;
+    margin: 10px;
+}
+
+.task .text{
+    display: flex;
+}
+
+.task .text p{
+    margin-left: 5px;
+}
+
+.task .btns-container{
+    width: 25%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.task .btns-container button{
+    width: 80px;
+    border: none;
+    outline: none;
+    background-color: #E7F6F2;
+    transform: scale(1.4);
+    color: #395B64;
+    transition: all 2s  ease-in-out;
+}
+
+.task .btns-container button:hover{
+    color: #2C3333;
+    border-bottom: 1px solid #2C3333;
+}
+
+
+.task .text p.compeleted{
+    text-decoration: line-through;
+}
+
+hr{
+    border: none;
+    border-top: 1px dashed #0F4C75;
+}
+
+.did-tasks .task{
+    background-color: #c5c4cb;
+    color:#3f3e41;
+}
+
+.did-tasks .task .btns-container button{
+    background-color: transparent;
+    color: black;
+    margin-right: 20px;
+}
+
+.did-tasks .task .btns-container{
+    display: flex;
+    justify-content:flex-end;
+}
+
+.weather-card{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content:flex-start;
+    left: 0;
+    margin-top: 13px;
+    background-color: rgb(246, 246, 246, 0.4);
+    color: black;
+    padding: 0 10px;
+    margin-left: 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+
+}
+
+.notification-container{
+    position: absolute;
+    display: flex;
+    right: 0;
+    top: 10px;
+    background-color: #3CCF4E;
+    width: 380px;
+    height: 50px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border-left: 5px solid rgb(37, 101, 38);
+    opacity: 0;
+}
+
+.notification-container button{
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+.notification-container button svg{
+    width: 25px;
+    height: 25px;
+    align-items: center;
+}
+
+
+.notification-container.show{
+    opacity: 1;
+    animation: 2s show cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+}
+
+.notification-container.hide{
+    animation: 2s hide linear forwards;
+}
+
+footer{
+    background-color: #1B262Ced;
+    color: #BBE1FA;
+    display: flex;
+    width: 100%;
+    height: 70px;
+    align-items: center;
+    justify-content: center;
+    bottom: 0;
+    position: fixed;
+}
+
+@keyframes show{
+    0%{
+        transform: translateX(100%);
+    }
+
+    40%{
+        transform: translateX(-10%);
+    }
+
+    80%{
+        transform: translateX(0%);
+    }
+
+    100%{
+        transform: translateX(-10px);
+    }
+}
+
+@keyframes hide{
+    0%{
+        transform: translateX(-10px);
+    }
+
+    40%{
+        transform: translateX(0%);
+    }
+
+    80%{
+        transform: translateX(-10%);
+    }
+
+    100%{
+        transform: translateX(100%);
+    }
+}
+
+@media (max-width: 675px) {
+    body{
+        width: 100%;
+        height: 100vh;
+        overflow-y:visible;
+        overflow-x: hidden m !important;
+
+    }
+
+    main{
+        overflow-y: visible;
+        overflow-x: hidden;
+    }
+
+    .tasks{
+        width: 100%;
+        text-align: center;
+    }
+    .task{
+        width: 90%;
+        margin: 10px auto;
+
+    }
+
+    .task .btns-container{
+        width: 40%;
+    }
+
+    .did-tasks{
+        width: 100%;
+    }
+
+    .search-container{
+        width: 100%;
+
+     }
+    .search-box-container{
+        width: 100%;
+
+    }
+    .search-box-container .search-box{
+        width: 90% !important;
+        display: block;
+        justify-content: center;
+
+    }
+
+    .search-box-container .submit-btn{
+        width: 40% !important;
+        margin-top: 15px;
+        border-radius: 10px;
+    }
+
+    .notification-container{
+        width: 95%;
+        top: 90%;
+        z-index: 2;
+        overflow: hidden;
+        position: fixed;
+    }
+
+    .weather-card{
+        background-color: rgba(0, 0, 0, 0.6);
+        color: white;
+        display: flex;
+        bottom: 70px;
+        width: 100%;
+        margin: 0 auto;
+        justify-content: center;
+        border-radius: 0;
+    }
+
+}
+
