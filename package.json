@@ -1,0 +1,41 @@
+{
+  "name": "todolist",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "start": "webpack-dev-server --config webpack.dev.js --open",
+    "build": "webpack --config webpack.prod.js",
+    "build-css": "tailwindcss build styles/tailwind.css -o styles/tailwind_css.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AmirhosseinHanifehzadeh/todolist.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AmirhosseinHanifehzadeh/todolist/issues"
+  },
+  "homepage": "https://github.com/AmirhosseinHanifehzadeh/todolist#readme",
+  "devDependencies": {
+    "css-loader": "^6.7.1",
+    "css-minimizer-webpack-plugin": "^4.0.0",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.6.1",
+    "postcss": "^8.4.14",
+    "postcss-loader": "^7.0.1",
+    "style-loader": "^3.3.1",
+    "tailwindcss": "^3.1.7",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.9.3",
+    "webpack-merge": "^5.8.0"
+  },
+  "dependencies": {
+    "clean-webpack-plugin": "^4.0.0",
+    "jquery": "^3.6.0",
+    "postcss-preset-env": "^7.7.2"
+  }
+}

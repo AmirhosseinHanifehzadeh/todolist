@@ -1,85 +1,105 @@
+// imports 
+import "jquery";
+import "../styles/styles.css";
+
 // elements 
-const addbtn = document.getElementById("submit-btn");
-const input = document.getElementById("search-input");
-const task = document.querySelector(".tasks"); // every box of task
-const didTask = document.querySelector(".did-tasks");
-const closeIcon = document.querySelector(".close-icon svg")
+const addbtn = $("#submit-btn");
+const input = $("#search-input");
+const task = $(".tasks"); // every box of task
+const didTask = $(".did-tasks");
+const closeIcon = $(".close-icon svg")
 // localstorage
+if (localStorage.getItem('tasks') === null){
+    localStorage.setItem("tasks", JSON.stringify([]))
+}
 
+if (localStorage.getItem("didTasks") === null){
+    localStorage.setItem("didTasks", JSON.stringify([]))
+}
+// list vals of keys in localstorage 
+var tasks = JSON.parse(localStorage.getItem('tasks'))
+var didTasks = JSON.parse(localStorage.getItem("didTasks"))
 
-// list values of keys in localstorage 
-const tasks = JSON.parse(localStorage.getItem('tasks'))
-const didTasks = JSON.parse(localStorage.getItem("didTasks"))
-
-// add function 
-addbtn.addEventListener("click", () => {
-    if (input.value.trim() != ''){
+// add function
+addbtn.click( () => {
+    if (input.val() != ''){
     
-            // add the value to the array
-            tasks.push(input.value); 
+            // add the val to the array
+            tasks.push(input.val()); 
+
+            if (addbtn.text() === 'edit'){
+                addbtn.html('add');
+                $(".notif-text").text("task edited successfully");
+        
+            }else{
+                $(".notif-text").text("task added successfully");
+
+            }
             
-            // join the values into a delimeted string and store it
+            // join the vals into a delimeted string and store it
             localStorage.setItem('tasks', JSON.stringify(tasks)); 
-            document.getElementById("notification").classList.remove('hide');
-            document.getElementById("notification").classList.add('show');
+            $("#notification").removeClass('hide');
+            $("#notification").addClass('show');
             setTimeout(() => {
-                document.getElementById("notification").classList.remove('show');
-                document.getElementById("notification").classList.add('hide');
+                $("#notification").removeClass('show');
+                $("#notification").addClass('hide');
             },5000)
     }else{
         alert("please enter a word")
     }
-    if (addbtn.value === 'edit'){
-        addbtn.value = 'add';
+    if (addbtn.text() === 'edit'){
+        addbtn.html('add');
+        $("#notification").html("task added successfully");
+
     }
-    input.value = '';
-    task.innerHTML = ''; 
+    input.val('');
+    task.html(''); 
     showTasks()
 
 })
 
 // add task by clicking on enter 
-input.addEventListener("keypress", e => {
+input.keypress(e => {
     if (e.key == 'Enter'){
         addbtn.click();
     }
 })
    
 // delete function 
-task.addEventListener("click", (e) => {
+task.click((e) => {
     if (e.target.classList.contains('delbtn')){
-        taskText = e.target.parentElement.parentElement.querySelector(".text p");
+        let taskText = e.target.parentElement.parentElement.querySelector(".text p");
         let deletedValIndex = tasks.indexOf(taskText.textContent);
         tasks.splice(deletedValIndex  ,1);
 
         localStorage.setItem('tasks', JSON.stringify(tasks));
-        task.innerHTML = ''; 
+        task.html(''); 
         showTasks();
     }
 
 })
 
 // edit funtion
-task.addEventListener("click", (e) => {
+task.click((e) => {
     if (e.target.classList.contains('editbtn')){
-        chosen_task = e.target.parentElement.parentElement;
-        input.value = chosen_task.getElementsByTagName('p')[0].innerHTML;
+        let chosen_task = e.target.parentElement.parentElement;
+        input.val(chosen_task.getElementsByTagName('p')[0].innerHTML);
         
-        addbtn.value = 'edit';
+        addbtn.html('edit');
 
-        let deletedValIndex = tasks.indexOf(input.value);
+        let deletedValIndex = tasks.indexOf(input.val);
         tasks.splice(deletedValIndex ,1);
         localStorage.setItem('tasks', JSON.stringify(tasks));  
-        task.innerHTML = ''; 
+        task.html(''); 
         showTasks();     
     }
 })
 
 
 // check a tasks ( do a tasks and transport it to did tasks div and LS)
-task.addEventListener("click", (e) => {
+task.click((e) => {
     if (e.target.classList.contains('checkboxbtn')){
-        text = e.target.parentElement.parentElement.querySelector(".text .task-text");
+        let text = e.target.parentElement.parentElement.querySelector(".text .task-text");
 
         let deletedValIndex = tasks.indexOf(text.textContent);
         tasks.splice(deletedValIndex ,1);
@@ -87,8 +107,8 @@ task.addEventListener("click", (e) => {
 
         didTasks.push(text.textContent);
         localStorage.setItem('didTasks', JSON.stringify(didTasks));
-        task.innerHTML = '';
-        didTask.innerHTML = '';
+        task.html('');
+        didTask.html('');
         showTasks();
         showDidTasks();
     }
@@ -104,9 +124,9 @@ let weather = {
         const {name} = data;
         const {icon} = data.weather[0];
         const {temp} = data.main;
-        document.querySelector(".icon-img").setAttribute('src', 'http://openweathermap.org/img/wn/' + icon + '.png');
-        document.querySelector(".city").innerHTML = name;
-        document.querySelector(".temp").innerHTML = temp + "°C";
+        $(".icon-img").attr('src', 'http://openweathermap.org/img/wn/' + icon + '.png');
+        $(".city").html(name);
+        $(".temp").html(temp + "°C");
     
     }
 }
@@ -114,32 +134,32 @@ let weather = {
 weather.fetchweather();
 
 // delete did task 
-didTask.addEventListener("click", e => {
+didTask.click(e => {
     if (e.target.classList.contains("delbtn")){
-        text = e.target.parentElement.parentElement.querySelector(".text .task-text");
+        let text = e.target.parentElement.parentElement.querySelector(".text .task-text");
 
         let deletedValIndex = didTasks.indexOf(text.textContent);
         didTasks.splice(deletedValIndex ,1);
         localStorage.setItem('didTasks', JSON.stringify(didTasks));
         e.target.parentElement.parentElement.parentElement.innerHTML = '';
-        didTask.innerHTML = '';
+        didTask.html = '';
         showDidTasks();
     }
 })
 
 // uncheck did task 
-didTask.addEventListener("click", e => {
+didTask.click(e => {
     if (e.target.classList.contains("checkboxbtn")){
-        text = e.target.parentElement.parentElement.querySelector(".text .task-text");
+        let text = e.target.parentElement.parentElement.querySelector(".text .task-text");
 
-        let deletedValIndex = didTasks.indexOf(text.textContent);
+        var deletedValIndex = didTasks.indexOf(text.textContent);
         didTasks.splice(deletedValIndex ,1);
         localStorage.setItem('didTasks', JSON.stringify(didTasks));
         
         tasks.push(text.textContent);
         localStorage.setItem('tasks', JSON.stringify(tasks));
-        task.innerHTML = '';
-        didTask.innerHTML = '';
+        task.html('');
+        didTask.html('');
         showDidTasks();
         showTasks();
     }
@@ -147,26 +167,26 @@ didTask.addEventListener("click", e => {
 
 
 function showTasks(){
-    tasks.forEach(element => {
-        adding_task = document.createElement("div");
+    jQuery.each(tasks, function(index, element){
+        var adding_task = document.createElement("div");
         adding_task.classList.add("task");
         adding_task.innerHTML += `
         <div class="text">
             <input class="checkboxbtn" id="checkboxBtn" type="checkbox">
             <p class="task-text" id="task-text">${element}</p>
         </div>
-        <div class="btns-container">
+        <div class="btns-container ">
             <button class="editbtn" id="editBtn">edit</button>
             <button class="delbtn" id="delBtn">delete</button>
         </div>
         `
-        document.getElementById("tasks").appendChild(adding_task);
+        $("#tasks").append(adding_task);
     });
 }
 
 function showDidTasks(){
-    didTasks.forEach(element => {
-        adding_compeleted_task = document.createElement("div");
+    jQuery.each(didTasks, function(index, element){
+        let adding_compeleted_task = document.createElement("div");
         adding_compeleted_task.classList.add("task");
     
         adding_compeleted_task.innerHTML += `
@@ -174,19 +194,18 @@ function showDidTasks(){
             <input class="checkboxbtn" id="checkboxBtn" type="checkbox" checked>
             <p class="task-text compeleted" id="task-text">${element}</p>
         </div>
-        <div class="btns-container">
-            <button class="delbtn" id="delBtn">delete</button>
+        <div class="btns-container ">
+            <button class="delbtn text-sm" id="delBtn">delete</button>
         </div>
         `
-        document.getElementById("did-tasks").appendChild(adding_compeleted_task);
+        $("#did-tasks").append(adding_compeleted_task);
     });
 }
 
-closeIcon.addEventListener("click", () => {
-    document.getElementById("notification").classList.remove('show');
-    document.getElementById("notification").classList.add('hide');
+closeIcon.click(() => {
+    $("#notification").removeClass('show');
+    $("#notification").addClass('hide');
 })
-
 
 
 showDidTasks()
